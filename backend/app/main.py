@@ -17,6 +17,10 @@ from app.routers.collaboration import router as collaboration_router
 from app.routers.timeline import router as timeline_router
 from app.routers.document_analysis import router as document_analysis_router
 from app.routers.export import router as export_router
+from app.routers.funders import router as funders_router
+from app.routers.workflow import router as workflow_router
+from app.routers.ai_improvement import router as ai_router
+from app.routers.settings import router as settings_router
 
 
 @asynccontextmanager
@@ -73,6 +77,10 @@ app.include_router(collaboration_router, prefix="/api/v1")
 app.include_router(timeline_router, prefix="/api/v1")
 app.include_router(document_analysis_router, prefix="/api/v1")
 app.include_router(export_router, prefix="/api/v1")
+app.include_router(funders_router, prefix="/api/v1")
+app.include_router(workflow_router, prefix="/api/v1")
+app.include_router(ai_router, prefix="/api/v1")
+app.include_router(settings_router, prefix="/api/v1")
 
 
 @app.get("/")
