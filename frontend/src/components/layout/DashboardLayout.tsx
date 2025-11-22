@@ -13,12 +13,62 @@ import {
   X,
   Home,
   User,
+  Calendar,
+  Users,
+  BarChart3,
+  Shield,
+  AlertTriangle,
+  BookOpen,
+  MessageSquare,
+  Mail,
+  Target,
+  ChevronDown,
+  ChevronRight,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const navigation = [
+interface NavItem {
+  name: string;
+  href: string;
+  icon: any;
+  children?: { name: string; href: string }[];
+}
+
+const navigation: NavItem[] = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },
   { name: 'Projects', href: '/dashboard/projects', icon: FolderOpen },
+  { name: 'Calendar', href: '/dashboard/calendar', icon: Calendar },
+  {
+    name: 'Team & Stakeholders',
+    href: '/dashboard/stakeholders',
+    icon: Users,
+    children: [
+      { name: 'Stakeholders', href: '/dashboard/stakeholders' },
+      { name: 'Team', href: '/dashboard/team' },
+    ]
+  },
+  {
+    name: 'Planning',
+    href: '/dashboard/planning',
+    icon: Target,
+    children: [
+      { name: 'Logic Model', href: '/dashboard/planning/logic-model' },
+      { name: 'Risk Assessment', href: '/dashboard/planning/risks' },
+    ]
+  },
+  {
+    name: 'Analytics',
+    href: '/dashboard/analytics',
+    icon: BarChart3,
+    children: [
+      { name: 'Metrics', href: '/dashboard/analytics/metrics' },
+      { name: 'Reports', href: '/dashboard/analytics/reports' },
+    ]
+  },
+  { name: 'Compliance', href: '/dashboard/compliance', icon: Shield },
+  { name: 'Resources', href: '/dashboard/resources', icon: BookOpen },
+  { name: 'Letters', href: '/dashboard/letters', icon: Mail },
+  { name: 'AI Assistant', href: '/dashboard/assistant', icon: MessageSquare },
   { name: 'Settings', href: '/dashboard/settings', icon: Settings },
 ]
 
@@ -27,6 +77,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const pathname = usePathname()
   const { user, isAuthenticated, isLoading, logout } = useAuthStore()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [expandedMenus, setExpandedMenus] = useState<string[]>([])
+
+  const toggleMenu = (name: string) => {
+    setExpandedMenus(prev =>
+      prev.includes(name) ? prev.filter(m => m !== name) : [...prev, name]
+    )
+  }
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -80,9 +137,57 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-2 py-4 space-y-1">
+          <nav className="flex-1 px-2 py-4 space-y-1 overflow-y-auto">
             {navigation.map((item) => {
               const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
+              const isExpanded = expandedMenus.includes(item.name)
+              const hasChildren = item.children && item.children.length > 0
+
+              if (hasChildren) {
+                return (
+                  <div key={item.name}>
+                    <button
+                      onClick={() => toggleMenu(item.name)}
+                      className={cn(
+                        'flex items-center w-full px-3 py-2 text-sm font-medium rounded-lg transition-colors',
+                        isActive
+                          ? 'bg-primary-50 text-primary-700'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      )}
+                    >
+                      <item.icon className="w-5 h-5 mr-3" />
+                      <span className="flex-1 text-left">{item.name}</span>
+                      {isExpanded ? (
+                        <ChevronDown className="w-4 h-4" />
+                      ) : (
+                        <ChevronRight className="w-4 h-4" />
+                      )}
+                    </button>
+                    {isExpanded && (
+                      <div className="ml-8 mt-1 space-y-1">
+                        {item.children!.map((child) => {
+                          const childActive = pathname === child.href
+                          return (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              className={cn(
+                                'block px-3 py-2 text-sm rounded-lg transition-colors',
+                                childActive
+                                  ? 'bg-primary-50 text-primary-700'
+                                  : 'text-gray-600 hover:bg-gray-100'
+                              )}
+                            >
+                              {child.name}
+                            </Link>
+                          )
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )
+              }
+
               return (
                 <Link
                   key={item.name}

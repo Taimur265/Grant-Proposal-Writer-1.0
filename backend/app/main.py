@@ -28,6 +28,11 @@ from app.routers.letters import router as letters_router
 from app.routers.audit import router as audit_router
 from app.routers.widgets import router as widgets_router
 from app.routers.ai_assistant import router as ai_assistant_router
+from app.routers.stakeholders import router as stakeholders_router
+from app.routers.reporting import router as reporting_router
+from app.routers.risk import router as risk_router
+from app.routers.logic_model import router as logic_model_router
+from app.routers.resources import router as resources_router
 
 
 @asynccontextmanager
@@ -95,6 +100,11 @@ app.include_router(letters_router, prefix="/api/v1")
 app.include_router(audit_router, prefix="/api/v1")
 app.include_router(widgets_router, prefix="/api/v1")
 app.include_router(ai_assistant_router, prefix="/api/v1")
+app.include_router(stakeholders_router, prefix="/api/v1")
+app.include_router(reporting_router, prefix="/api/v1")
+app.include_router(risk_router, prefix="/api/v1")
+app.include_router(logic_model_router, prefix="/api/v1")
+app.include_router(resources_router, prefix="/api/v1")
 
 
 @app.get("/")
