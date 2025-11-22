@@ -33,6 +33,15 @@ from app.routers.reporting import router as reporting_router
 from app.routers.risk import router as risk_router
 from app.routers.logic_model import router as logic_model_router
 from app.routers.resources import router as resources_router
+from app.routers.needs_assessment import router as needs_assessment_router
+from app.routers.goals_objectives import router as goals_objectives_router
+from app.routers.evaluation import router as evaluation_router
+from app.routers.sustainability import router as sustainability_router
+from app.routers.funder_research import router as funder_research_router
+from app.routers.application_tracking import router as application_tracking_router
+from app.routers.narrative import router as narrative_router
+from app.routers.work_plan import router as work_plan_router
+from app.routers.post_award import router as post_award_router
 
 
 @asynccontextmanager
@@ -105,6 +114,15 @@ app.include_router(reporting_router, prefix="/api/v1")
 app.include_router(risk_router, prefix="/api/v1")
 app.include_router(logic_model_router, prefix="/api/v1")
 app.include_router(resources_router, prefix="/api/v1")
+app.include_router(needs_assessment_router, prefix="/api/v1")
+app.include_router(goals_objectives_router, prefix="/api/v1")
+app.include_router(evaluation_router, prefix="/api/v1")
+app.include_router(sustainability_router, prefix="/api/v1")
+app.include_router(funder_research_router, prefix="/api/v1")
+app.include_router(application_tracking_router, prefix="/api/v1")
+app.include_router(narrative_router, prefix="/api/v1")
+app.include_router(work_plan_router, prefix="/api/v1")
+app.include_router(post_award_router, prefix="/api/v1")
 
 
 @app.get("/")

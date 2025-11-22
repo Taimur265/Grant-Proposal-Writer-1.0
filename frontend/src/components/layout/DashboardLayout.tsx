@@ -24,6 +24,14 @@ import {
   Target,
   ChevronDown,
   ChevronRight,
+  Search,
+  ClipboardList,
+  FileEdit,
+  DollarSign,
+  Award,
+  TrendingUp,
+  Layers,
+  PenTool,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -39,6 +47,41 @@ const navigation: NavItem[] = [
   { name: 'Projects', href: '/dashboard/projects', icon: FolderOpen },
   { name: 'Calendar', href: '/dashboard/calendar', icon: Calendar },
   {
+    name: 'Grant Pipeline',
+    href: '/dashboard/pipeline',
+    icon: Layers,
+    children: [
+      { name: 'Funder Research', href: '/dashboard/pipeline/funders' },
+      { name: 'Opportunities', href: '/dashboard/pipeline/opportunities' },
+      { name: 'Applications', href: '/dashboard/pipeline/applications' },
+      { name: 'Awarded Grants', href: '/dashboard/pipeline/awarded' },
+    ]
+  },
+  {
+    name: 'Proposal Development',
+    href: '/dashboard/proposals',
+    icon: FileEdit,
+    children: [
+      { name: 'Needs Assessment', href: '/dashboard/proposals/needs-assessment' },
+      { name: 'Goals & Objectives', href: '/dashboard/proposals/goals' },
+      { name: 'Narrative Builder', href: '/dashboard/proposals/narrative' },
+      { name: 'Work Plan', href: '/dashboard/proposals/work-plan' },
+      { name: 'Budget Builder', href: '/dashboard/proposals/budget' },
+      { name: 'Boilerplate Library', href: '/dashboard/proposals/boilerplate' },
+    ]
+  },
+  {
+    name: 'Planning & Design',
+    href: '/dashboard/planning',
+    icon: Target,
+    children: [
+      { name: 'Logic Model', href: '/dashboard/planning/logic-model' },
+      { name: 'Risk Assessment', href: '/dashboard/planning/risks' },
+      { name: 'Evaluation Plan', href: '/dashboard/planning/evaluation' },
+      { name: 'Sustainability', href: '/dashboard/planning/sustainability' },
+    ]
+  },
+  {
     name: 'Team & Stakeholders',
     href: '/dashboard/stakeholders',
     icon: Users,
@@ -48,21 +91,13 @@ const navigation: NavItem[] = [
     ]
   },
   {
-    name: 'Planning',
-    href: '/dashboard/planning',
-    icon: Target,
-    children: [
-      { name: 'Logic Model', href: '/dashboard/planning/logic-model' },
-      { name: 'Risk Assessment', href: '/dashboard/planning/risks' },
-    ]
-  },
-  {
-    name: 'Analytics',
-    href: '/dashboard/analytics',
+    name: 'Monitoring & Reporting',
+    href: '/dashboard/monitoring',
     icon: BarChart3,
     children: [
-      { name: 'Metrics', href: '/dashboard/analytics/metrics' },
-      { name: 'Reports', href: '/dashboard/analytics/reports' },
+      { name: 'Metrics Dashboard', href: '/dashboard/monitoring/metrics' },
+      { name: 'Reports', href: '/dashboard/monitoring/reports' },
+      { name: 'Impact Stories', href: '/dashboard/monitoring/impact' },
     ]
   },
   { name: 'Compliance', href: '/dashboard/compliance', icon: Shield },
