@@ -10,6 +10,13 @@ from app.config import settings
 from app.database import init_db, close_db
 from app.routers import auth_router, projects_router, documents_router, proposals_router
 from app.routers.templates import router as templates_router
+from app.routers.analytics import router as analytics_router
+from app.routers.budget import router as budget_router
+from app.routers.search import router as search_router
+from app.routers.collaboration import router as collaboration_router
+from app.routers.timeline import router as timeline_router
+from app.routers.document_analysis import router as document_analysis_router
+from app.routers.export import router as export_router
 
 
 @asynccontextmanager
@@ -59,6 +66,13 @@ app.include_router(projects_router, prefix="/api/v1")
 app.include_router(documents_router, prefix="/api/v1")
 app.include_router(proposals_router, prefix="/api/v1")
 app.include_router(templates_router, prefix="/api/v1")
+app.include_router(analytics_router, prefix="/api/v1")
+app.include_router(budget_router, prefix="/api/v1")
+app.include_router(search_router, prefix="/api/v1")
+app.include_router(collaboration_router, prefix="/api/v1")
+app.include_router(timeline_router, prefix="/api/v1")
+app.include_router(document_analysis_router, prefix="/api/v1")
+app.include_router(export_router, prefix="/api/v1")
 
 
 @app.get("/")
