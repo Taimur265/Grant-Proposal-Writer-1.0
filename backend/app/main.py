@@ -9,6 +9,7 @@ from fastapi.staticfiles import StaticFiles
 from app.config import settings
 from app.database import init_db, close_db
 from app.routers import auth_router, projects_router, documents_router, proposals_router
+from app.routers.templates import router as templates_router
 
 
 @asynccontextmanager
@@ -57,6 +58,7 @@ app.include_router(auth_router, prefix="/api/v1")
 app.include_router(projects_router, prefix="/api/v1")
 app.include_router(documents_router, prefix="/api/v1")
 app.include_router(proposals_router, prefix="/api/v1")
+app.include_router(templates_router, prefix="/api/v1")
 
 
 @app.get("/")
