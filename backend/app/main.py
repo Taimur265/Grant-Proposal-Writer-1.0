@@ -21,6 +21,13 @@ from app.routers.funders import router as funders_router
 from app.routers.workflow import router as workflow_router
 from app.routers.ai_improvement import router as ai_router
 from app.routers.settings import router as settings_router
+from app.routers.team import router as team_router
+from app.routers.compliance import router as compliance_router
+from app.routers.calendar import router as calendar_router
+from app.routers.letters import router as letters_router
+from app.routers.audit import router as audit_router
+from app.routers.widgets import router as widgets_router
+from app.routers.ai_assistant import router as ai_assistant_router
 
 
 @asynccontextmanager
@@ -81,6 +88,13 @@ app.include_router(funders_router, prefix="/api/v1")
 app.include_router(workflow_router, prefix="/api/v1")
 app.include_router(ai_router, prefix="/api/v1")
 app.include_router(settings_router, prefix="/api/v1")
+app.include_router(team_router, prefix="/api/v1")
+app.include_router(compliance_router, prefix="/api/v1")
+app.include_router(calendar_router, prefix="/api/v1")
+app.include_router(letters_router, prefix="/api/v1")
+app.include_router(audit_router, prefix="/api/v1")
+app.include_router(widgets_router, prefix="/api/v1")
+app.include_router(ai_assistant_router, prefix="/api/v1")
 
 
 @app.get("/")
